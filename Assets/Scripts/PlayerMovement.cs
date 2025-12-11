@@ -58,4 +58,5 @@ public class PlayerMovement : MonoBehaviour
         }
         healthDisplay.text = health.ToString()+"/"+maxHealth.ToString();
     }
+    
 }

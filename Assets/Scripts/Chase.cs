@@ -1,5 +1,5 @@
 using UnityEngine;
-public class ChaseEnemyMovement : MonoBehaviour
+public class Chase : MonoBehaviour
 {
     public float speed;
     public float health;
@@ -8,7 +8,6 @@ public class ChaseEnemyMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        health = 2;
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
     void Update()
@@ -21,12 +20,13 @@ public class ChaseEnemyMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<PlayerMovement>().health -= 1;
-            rb.AddForce(-(Vector2)player.transform.position-(Vector2)transform.position);
+            rb.AddForce(((Vector2)transform.position - (Vector2)col.transform.position).normalized * 5f, ForceMode2D.Impulse);
+            col.gameObject.GetComponent<Rigidbody2D>().AddForce(((Vector2)col.transform.position - (Vector2)transform.position).normalized * 3f, ForceMode2D.Impulse);
         }
         else if(col.gameObject.CompareTag("PlayerBullet"))
         {
