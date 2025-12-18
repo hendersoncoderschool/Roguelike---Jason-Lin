@@ -1,13 +1,18 @@
 using UnityEngine;
+using System.Collections;
 public class FireBullets : MonoBehaviour
 {
-    public float reloadTime;
+    public GameObject enemyBullet; 
     void Start()
     {
-        
+        StartCoroutine(Firerate());
     }
-    void Update()
+    IEnumerator Firerate()
     {
-        
+        while (true)
+        {
+            yield return new WaitForSeconds(1.2f);
+            GameObject newBullet = Instantiate(enemyBullet, transform.position, transform.rotation);
+        }
     }
 }

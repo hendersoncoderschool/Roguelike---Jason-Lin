@@ -1,5 +1,5 @@
 using UnityEngine;
-public class PlayerBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float speed;

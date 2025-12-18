@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class EnergyMeter : MonoBehaviour
 {
-    PlayerMovement player;
+    Player player;
     RectTransform Rect;
     public float t;
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        player = GameObject.Find("Player").GetComponent<Player>();
         Rect = GetComponent<RectTransform>();
         t = 0.0f;
     }

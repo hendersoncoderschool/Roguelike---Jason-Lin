@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
-public class PlayerMovement : MonoBehaviour
+using System.Collections;
+public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float moveSpeed;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         exhausted = false;
         health = 10;
         maxHealth = 10;
+        StartCoroutine(Firerate());
     }
     void Update()
     {
@@ -46,17 +48,31 @@ public class PlayerMovement : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
         transform.up = direction;
-        if(Input.GetMouseButtonDown(0)&&energy>=0.1&&!exhausted)
-        {
-            GameObject newBullet = Instantiate(playerBullet,transform.position,transform.rotation);
-            energyMeter.t = 0.0f;
-            energy -= 50f;
-            if(energy<0)
-            {
-                energy = 0;
-            }
-        }
         healthDisplay.text = health.ToString()+"/"+maxHealth.ToString();
     }
-    
+    IEnumerator Firerate()
+    {
+        while(true)
+        {
+            if (Input.GetMouseButton(0) && energy >= 0.1 && !exhausted)
+            {
+                GameObject newBullet = Instantiate(playerBullet, transform.position, transform.rotation);
+                energyMeter.t = 0.0f;
+                energy -= 50f;
+                if (energy < 0)
+                {
+                    energy = 0;
+                }
+                yield return new WaitForSeconds(0.6f);
+            }
+            yield return null;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("EnemyBullet"))
+        {
+            health -= 1; 
+        }
+    }
 }
