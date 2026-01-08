@@ -1,5 +1,6 @@
 using UnityEngine;
-public class Chase : MonoBehaviour
+
+public class BulletEnemyChase : MonoBehaviour
 {
     public float speed;
     public GameObject player;
@@ -13,7 +14,7 @@ public class Chase : MonoBehaviour
     {
         Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position);
         transform.up = direction;
-        transform.Translate(Vector2.up * (Mathf.Pow(speed, direction.magnitude-3)+0.6f) * Time.deltaTime);
+        transform.Translate(Vector2.up * speed * direction.magnitude * Time.deltaTime);
     }
     void OnCollisionEnter2D(Collision2D col)
     {

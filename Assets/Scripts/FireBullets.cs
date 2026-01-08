@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 public class FireBullets : MonoBehaviour
 {
-    public GameObject enemyBullet; 
+    public GameObject enemyBullet;
+    public float fireRate;
     void Start()
     {
         StartCoroutine(Firerate());
@@ -11,7 +12,7 @@ public class FireBullets : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(fireRate);
             GameObject newBullet = Instantiate(enemyBullet, transform.position, transform.rotation);
         }
     }
