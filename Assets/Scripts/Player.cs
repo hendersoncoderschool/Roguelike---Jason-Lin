@@ -11,16 +11,20 @@ public class Player : MonoBehaviour
     public float movementEnergyCost;
     public float health;
     public float maxHealth;
+    public float firerate;
     public bool exhausted;
     public EnergyMeter energyMeter;
     public GameObject playerBullet;
     public TextMeshProUGUI healthDisplay;
+
+    //Upgrades
+    public int totalSpeedUpgrades;
+    public int totalFirerateUpgrades;
+    public int totalMaxHealthUpgrades;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         exhausted = false;
-        health = 10;
-        maxHealth = 10;
         StartCoroutine(Firerate());
     }
     void Update()
@@ -31,7 +35,7 @@ public class Player : MonoBehaviour
 
         if (energy>0f)
         {
-            energy -= rb.linearVelocity.magnitude * movementEnergyCost * Time.deltaTime;
+            energy -= rb.linearVelocity.magnitude * (movementEnergyCost/moveSpeed) * Time.deltaTime;
         }
         if (energy < 1f) exhausted = true;
         else if (energy > 50f) exhausted = false;
@@ -58,12 +62,12 @@ public class Player : MonoBehaviour
             {
                 GameObject newBullet = Instantiate(playerBullet, transform.position, transform.rotation);
                 energyMeter.t = 0.0f;
-                energy -= 50f;
+                energy -= 83f * firerate;
                 if (energy < 0)
                 {
                     energy = 0;
                 }
-                yield return new WaitForSeconds(0.6f);
+                yield return new WaitForSeconds(firerate);
             }
             yield return null;
         }

@@ -7,8 +7,6 @@ public class Dash : MonoBehaviour
     public GameObject player;
     public Rigidbody2D rb;
     public float speed;
-    public float dashRate;
-    public float lerpStep;
     void Start()
     {
         player = GameObject.Find("Player");
@@ -24,14 +22,19 @@ public class Dash : MonoBehaviour
             while(t < 1f)
             {
                 renderer.material.color =Color.Lerp(Color.white,Color.red,t);
-                t += lerpStep;
+                t += 0.0015f;
                 yield return null;
             }
-            yield return new WaitForSeconds(dashRate);
             Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position);
             transform.up = direction;
             rb.AddForce(transform.up * speed,ForceMode2D.Impulse);
-            
+            t = 0f;
+            while (t < 1f)
+            {
+                renderer.material.color = Color.Lerp(Color.red, Color.white, t);
+                t += 0.02f;
+                yield return null;
+            }
         }
     }
     void OnCollisionEnter2D(Collision2D col)
