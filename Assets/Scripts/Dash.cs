@@ -22,7 +22,7 @@ public class Dash : MonoBehaviour
             while(t < 1f)
             {
                 renderer.material.color =Color.Lerp(Color.white,Color.red,t);
-                t += 0.0015f;
+                t += 0.0012f;
                 yield return null;
             }
             Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position);

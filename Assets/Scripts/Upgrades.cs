@@ -1,7 +1,6 @@
 using UnityEngine;
 public class Upgrades : MonoBehaviour
 {
-    //(1/ln(1.02)x)*10
     public Player player;
     void Start()
     {
@@ -9,7 +8,7 @@ public class Upgrades : MonoBehaviour
     }
     public void SpeedUpgrade()
     {
-        player.moveSpeed += 200;
+        player.moveSpeed=Mathf.Log(player.totalSpeedUpgrades+6)*400+250;
     }
     public void FirerateUpgrade()
     {
