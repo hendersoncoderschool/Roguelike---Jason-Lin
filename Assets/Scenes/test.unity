@@ -691,6 +691,7 @@ MonoBehaviour:
   energyMeter: {fileID: 1895163664}
   playerBullet: {fileID: 7505848869317441795, guid: fdacf1f25fabcc542976fb7edf40fe5f, type: 3}
   healthDisplay: {fileID: 681015725}
+  shopPanel: {fileID: 1723477352}
   totalSpeedUpgrades: 0
   totalFirerateUpgrades: 0
   totalMaxHealthUpgrades: 0
@@ -1667,7 +1668,6 @@ RectTransform:
   m_Children:
   - {fileID: 681015724}
   - {fileID: 1895163661}
-  - {fileID: 1338097558}
   - {fileID: 1723477353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1804,16 +1804,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338097557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1005450290}
+  m_Father: {fileID: 1723477353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 170}
+  m_AnchoredPosition: {x: 0, y: 425}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338097559
@@ -2074,7 +2074,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1428732277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1428732279}
+        m_TargetAssemblyTypeName: RerollUpgrades, Assembly-CSharp
+        m_MethodName: Reroll1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1428732279}
+        m_TargetAssemblyTypeName: RerollUpgrades, Assembly-CSharp
+        m_MethodName: Reroll2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1428732279}
+        m_TargetAssemblyTypeName: RerollUpgrades, Assembly-CSharp
+        m_MethodName: Reroll3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1428732277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,6 +2164,10 @@ MonoBehaviour:
   upgradeSpawnpoint1: {fileID: 0}
   upgradeSpawnpoint2: {fileID: 0}
   upgradeSpawnpoint3: {fileID: 0}
+  upgradeButtons:
+  - {fileID: 5357847197577486079, guid: 49b86b4d4e80ef14e8387e8b6b713742, type: 3}
+  - {fileID: 2697285569926364884, guid: f440a665d8b68e141ac46201ad7aea5b, type: 3}
+  - {fileID: 8634317309456376379, guid: a2c7098bdab74584ab69979a327b629e, type: 3}
 --- !u!1 &1549269330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,7 +2471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1723477353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2444,6 +2484,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1338097558}
   - {fileID: 1366928951}
   - {fileID: 1608979134}
   - {fileID: 1607021697}

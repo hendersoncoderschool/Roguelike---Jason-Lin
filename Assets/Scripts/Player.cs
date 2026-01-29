@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public EnergyMeter energyMeter;
     public GameObject playerBullet;
     public TextMeshProUGUI healthDisplay;
+    public GameObject shopPanel;
 
     //Upgrades
     public int totalSpeedUpgrades;
@@ -50,9 +51,26 @@ public class Player : MonoBehaviour
         energy += rechargeEnergy*Time.deltaTime;
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
-        transform.up = direction;
+        if(Time.timeScale==1)
+        {
+            Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
+            transform.up = direction;
+        }
         healthDisplay.text = health.ToString()+"/"+maxHealth.ToString();
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            shopPanel.SetActive(!shopPanel.activeInHierarchy);
+            if(Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+            //Time.timeScale == 1 ? Time.timeScale = 0 : Time.timeScale = 1;
+        }    
     }
     IEnumerator Firerate()
     {

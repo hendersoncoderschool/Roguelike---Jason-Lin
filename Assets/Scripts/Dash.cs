@@ -21,6 +21,7 @@ public class Dash : MonoBehaviour
             float t = 0f;
             while(t < 1f)
             {
+                //add Time.deltaTime
                 renderer.material.color =Color.Lerp(Color.white,Color.red,t);
                 t += 0.0012f;
                 yield return null;
