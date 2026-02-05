@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     public int totalSpeedUpgrades;
     public int totalFirerateUpgrades;
     public int totalMaxHealthUpgrades;
+
+    //Debug
+    public int targetFPS;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -69,14 +72,13 @@ public class Player : MonoBehaviour
             {
                 Time.timeScale = 1;
             }
-            //Time.timeScale == 1 ? Time.timeScale = 0 : Time.timeScale = 1;
         }    
     }
     IEnumerator Firerate()
     {
         while(true)
         {
-            if (Input.GetMouseButton(0) && energy >= 0.1 && !exhausted)
+            if (Input.GetMouseButton(0) && energy >= 0.1 && !exhausted &&  Time.timeScale>0)
             {
                 GameObject newBullet = Instantiate(playerBullet, transform.position, transform.rotation);
                 energyMeter.t = 0.0f;
@@ -96,5 +98,10 @@ public class Player : MonoBehaviour
         {
             health -= 1; 
         }
+    }
+    void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFPS;
     }
 }

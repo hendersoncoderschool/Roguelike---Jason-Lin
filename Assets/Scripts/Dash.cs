@@ -22,8 +22,12 @@ public class Dash : MonoBehaviour
             while(t < 1f)
             {
                 //add Time.deltaTime
+                while(Time.timeScale==0)
+                {
+                    yield return null;
+                }
                 renderer.material.color =Color.Lerp(Color.white,Color.red,t);
-                t += 0.0012f;
+                t += 0.8f*Time.deltaTime;
                 yield return null;
             }
             Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position);
@@ -32,19 +36,14 @@ public class Dash : MonoBehaviour
             t = 0f;
             while (t < 1f)
             {
+                while (Time.timeScale == 0)
+                {
+                       yield return null;
+                }
                 renderer.material.color = Color.Lerp(Color.red, Color.white, t);
-                t += 0.02f;
+                t += 8f*Time.deltaTime;
                 yield return null;
             }
-        }
-    }
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            col.gameObject.GetComponent<Player>().health -= 1;
-            rb.AddForce(((Vector2)transform.position - (Vector2)col.transform.position).normalized * 5f, ForceMode2D.Impulse);
-            col.gameObject.GetComponent<Rigidbody2D>().AddForce(((Vector2)col.transform.position - (Vector2)transform.position).normalized * 3f, ForceMode2D.Impulse);
         }
     }
 }
