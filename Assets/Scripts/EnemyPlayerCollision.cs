@@ -6,7 +6,10 @@ public class EnemyPlayerCollision : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        if (rb==null)
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
