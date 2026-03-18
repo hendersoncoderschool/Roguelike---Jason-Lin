@@ -21,7 +21,6 @@ public class Dash : MonoBehaviour
             float t = 0f;
             while(t < 1f)
             {
-                //add Time.deltaTime
                 while(Time.timeScale==0)
                 {
                     yield return null;
