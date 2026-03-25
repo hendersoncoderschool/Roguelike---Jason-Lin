@@ -10,6 +10,7 @@ public class TunnelerChase : MonoBehaviour
     GameObject tunnelerBody;
     public SpriteRenderer tunnelerBodySpriteRenderer;
     public CircleCollider2D tunnelerBodyCollider;
+    public GameObject explosionPrefab;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -46,6 +47,7 @@ public class TunnelerChase : MonoBehaviour
             tunnelerBodyAnimator.SetBool("FlashingRed",true);
             yield return new WaitForSeconds(1f);
             tunnelerBodyAnimator.SetBool("FlashingRed", false);
+            Instantiate(explosionPrefab,transform.position, Quaternion.identity);
             yield return new WaitForSeconds(1.2f);
         }
     }

@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 61202639}
   - component: {fileID: 61202640}
   - component: {fileID: 61202641}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Top Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 148849819}
   - component: {fileID: 148849820}
   - component: {fileID: 148849821}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1308,6 +1308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 783286336}
   - component: {fileID: 783286337}
+  - component: {fileID: 783286338}
   m_Layer: 0
   m_Name: TunnelerShadow
   m_TagString: Untagged
@@ -1385,6 +1386,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &783286338
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783286335}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 503
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.6}
+  m_Radius: 0.5
 --- !u!1 &813998166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1770,7 @@ GameObject:
   - component: {fileID: 853029968}
   - component: {fileID: 853029969}
   - component: {fileID: 853029970}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bottom Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2742,6 +2779,7 @@ MonoBehaviour:
   tunnelerBodyAnimator: {fileID: 0}
   tunnelerBodySpriteRenderer: {fileID: 0}
   tunnelerBodyCollider: {fileID: 0}
+  explosionPrefab: {fileID: 113870926453323513, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
 --- !u!50 &1518467348
 Rigidbody2D:
   serializedVersion: 5
@@ -2793,7 +2831,7 @@ GameObject:
   - component: {fileID: 1549269331}
   - component: {fileID: 1549269332}
   - component: {fileID: 1549269333}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3661,6 +3699,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2c7098bdab74584ab69979a327b629e, type: 3}
+--- !u!1001 &7746970678119060804
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 113870926453323513, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_Name
+      value: TunnelerExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252938979669633334, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13ef8073c18abeb42b253d38bb5549d0, type: 3}
 --- !u!1001 &9084032756972038409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3770,6 +3865,7 @@ SceneRoots:
   - {fileID: 1995293972}
   - {fileID: 813998167}
   - {fileID: 1518467346}
+  - {fileID: 7746970678119060804}
   - {fileID: 1168127052}
   - {fileID: 1005450290}
   - {fileID: 1232430837}
