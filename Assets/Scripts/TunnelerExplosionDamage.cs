@@ -4,28 +4,27 @@ public class TunnelerExplosionDamage : MonoBehaviour
 {
     public GameObject player;
     public bool hitPlayer;
-    public Renderer renderer;
+    public Renderer tunnelerRenderer;
+    public float fadeSpeed;
     void Start()
     {
         player = GameObject.Find("Player");
         hitPlayer = false;
-        renderer = GetComponent<Renderer>();
+        tunnelerRenderer = GetComponent<Renderer>();
         StartCoroutine(FadeAway());
     }
     IEnumerator FadeAway()
     {
         while (true)
         {
-            Color temp = renderer.material.color;
-            temp.a = 255f;
-            temp.a -= 50f * Time.deltaTime;
-            renderer.material.color = temp;
+            Color temp = tunnelerRenderer.material.color;
+            temp.a -= fadeSpeed * Time.deltaTime;
+            tunnelerRenderer.material.color = temp;
             if (temp.a <= 0f)
             {
                 Destroy(gameObject);
             }
             yield return null;
-            //fix
         }
     }
     void OnTriggerEnter2D(Collider2D col)
