@@ -2,6 +2,7 @@ using UnityEngine;
 public class Chase : MonoBehaviour
 {
     public float speed;
+    public float maxSpeed;
     public GameObject player;
     void Start()
     {
@@ -11,6 +12,11 @@ public class Chase : MonoBehaviour
     {
         Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position);
         transform.up = direction;
-        transform.Translate(Vector2.up * (Mathf.Pow(speed, direction.magnitude - 3) + 0.6f) * Time.deltaTime);
+        float finalSpeed = Mathf.Pow(speed, direction.magnitude - 3) + 0.6f;
+        if (finalSpeed > maxSpeed)
+        {
+            finalSpeed = maxSpeed;
+        }
+        transform.Translate(Vector2.up * finalSpeed * Time.deltaTime);
     }
 }
