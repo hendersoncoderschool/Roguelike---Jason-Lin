@@ -4,9 +4,11 @@ public class Chase : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public GameObject player;
+    public Rigidbody2D rb;
     void Start()
     {
         player = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -17,6 +19,7 @@ public class Chase : MonoBehaviour
         {
             finalSpeed = maxSpeed;
         }
-        transform.Translate(Vector2.up * finalSpeed * Time.deltaTime);
+        //transform.Translate(Vector2.up * finalSpeed * Time.deltaTime);
+        rb.AddForce(transform.up * finalSpeed * Time.deltaTime * 200f);
     }
 }

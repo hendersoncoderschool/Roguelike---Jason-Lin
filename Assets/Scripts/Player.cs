@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public GameObject playerBullet;
     public TextMeshProUGUI healthDisplay;
     public GameObject shopPanel;
+    //max energy and starting energy is 200
 
     //Upgrades
     public int totalSpeedUpgrades;

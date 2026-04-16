@@ -496,8 +496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   moveSpeed: 800
-  energy: 200
-  maxEnergy: 200
+  energy: 20000
+  maxEnergy: 20000
   rechargeEnergy: 50
   movementEnergyCost: 24000
   health: 10
@@ -1115,12 +1115,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f3c644767aba94b8f47189ef0815be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveNumber: 0
   AllEnemies:
   - {fileID: 8544000850486491545, guid: 676a3a02c0d019a478b0fec4df66fbfb, type: 3}
   - {fileID: 3480783603015507226, guid: 3144a7c508d08534cb6d4b2a62d077cc, type: 3}
   - {fileID: 7342687088547887557, guid: 285d425809d315d46b2a15ded721b62a, type: 3}
   - {fileID: 4343999514002285357, guid: c20d69930e678d140a43fe0191a66ae2, type: 3}
   - {fileID: 5165639877882364956, guid: a5ef92af1f3bf34438c2f31fe7facb5e, type: 3}
+  player: {fileID: 0}
+  ChaseEnemy: {fileID: 8544000850486491545, guid: 676a3a02c0d019a478b0fec4df66fbfb, type: 3}
+  DashEnemy: {fileID: 3480783603015507226, guid: 3144a7c508d08534cb6d4b2a62d077cc, type: 3}
+  BulletEnemy: {fileID: 7342687088547887557, guid: 285d425809d315d46b2a15ded721b62a, type: 3}
+  BlockerEnemy: {fileID: 4343999514002285357, guid: c20d69930e678d140a43fe0191a66ae2, type: 3}
+  TunnelerEnemy: {fileID: 5165639877882364956, guid: a5ef92af1f3bf34438c2f31fe7facb5e, type: 3}
 --- !u!1 &935341733
 GameObject:
   m_ObjectHideFlags: 0
