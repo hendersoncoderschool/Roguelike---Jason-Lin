@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using System.Linq;
 public class EnemySpawner : MonoBehaviour
 {
     public int waveNumber;
@@ -43,13 +44,45 @@ public class EnemySpawner : MonoBehaviour
     }
     void SpawnEnemy()
     {
-        //add random enemy chooser
-        GameObject newEnemy=Instantiate(AllEnemies[0], new Vector2(Random.Range(-7.5f, 7.5f), Random.Range(-3.5f, 2.5f)), transform.rotation);
+        var LiveEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Vector2 spawnPosition = new Vector2(0,0);
+        for (int i=0;i<5;i++)
+        {
+            spawnPosition = new Vector2(Random.Range(-7.5f, 7.5f), Random.Range(-3.5f, 2.5f));
+            if (Vector2.Distance(player.transform.position, spawnPosition) < 3f)
+            {
+                print("too close");
+                continue;
+            }
+            foreach (GameObject enemy in LiveEnemies)
+            {
+                if (Vector2.Distance(enemy.transform.position, spawnPosition) < 0.5f)
+                {
+                    print("too close");
+                    break;
+                }
+            }
+        }
+        //Random Enemy Algorithm
+        int[] weights = EnemyChances.Values.ToArray();
+        int randomWeight = Random.Range(0, weights.Sum());
+        GameObject randomEnemy = AllEnemies[0];
+        for (int i=0;i<weights.Length;++i)
+        {
+            randomWeight -= weights[i];
+            if (randomWeight < 0)
+            {
+                randomEnemy = AllEnemies[i];
+                break;
+            }
+        }
+        GameObject newEnemy=Instantiate(randomEnemy, spawnPosition, transform.rotation);
+        /*
         if (Vector2.Distance(newEnemy.transform.position,player.transform.position)<2.5f)
         {
             newEnemy.transform.up = (new Vector3(0, 0, 0) - newEnemy.transform.position).normalized;
             print(newEnemy.transform.up);
             newEnemy.transform.Translate(newEnemy.transform.up * 3f, Space.World);
-        }
+        }*/
     }
 }

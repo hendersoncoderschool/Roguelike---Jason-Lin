@@ -33,7 +33,7 @@ public class TunnelerChase : MonoBehaviour
                 while (t < 0.8f)
                 {
                     Vector2 direction = (player.position - transform.position).normalized;
-                    rb.AddForce(direction * speed);
+                    rb.AddForce(direction * speed * Time.timeScale);
                     t += Time.deltaTime;
                     yield return null;
                 }
