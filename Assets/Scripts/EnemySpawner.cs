@@ -1,29 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using System.Linq;
+using TMPro;
 public class EnemySpawner : MonoBehaviour
 {
     public int waveNumber;
+    public float timeToNextEnemy;
     public List<GameObject> AllEnemies;
     public Dictionary<GameObject, int> EnemyChances;
     public GameObject player;
-    public GameObject ChaseEnemy;
-    public GameObject DashEnemy;
-    public GameObject BulletEnemy;
-    public GameObject BlockerEnemy;
-    public GameObject TunnelerEnemy;
+    public TextMeshProUGUI waveText;
     void Start()
     {
+        waveText.text = "Wave " + waveNumber.ToString();
         player = GameObject.Find("Player");
         EnemyChances = new Dictionary<GameObject, int>()
         {
-            {ChaseEnemy, 100},
-            {DashEnemy, 80},
-            {BulletEnemy, 50},
-            {BlockerEnemy, 50},
-            {TunnelerEnemy, 40}
+            {AllEnemies[0], 100},
+            {AllEnemies[1], 70},
+            {AllEnemies[2], 0},
+            {AllEnemies[3], 0},
+            {AllEnemies[4], 0}
         };
         StartCoroutine(RandomWaves());
     }
@@ -38,18 +38,44 @@ public class EnemySpawner : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(1f);
-            SpawnEnemy();
-        }        
+            //AddEnemies
+            if(waveNumber >= 5)
+            {
+                EnemyChances[AllEnemies[2]] = 50;
+            }
+            if (waveNumber >= 10)
+            {
+                EnemyChances[AllEnemies[3]] = 50;
+            }
+            if (waveNumber >= 15)
+            {
+                EnemyChances[AllEnemies[4]] = 35;
+            }
+            //Spawn Enemies
+            for (int i = 0; i < 3 + waveNumber / 2; i++)
+            {
+                yield return new WaitForSeconds(timeToNextEnemy);
+                SpawnEnemy();
+            }
+            var LiveEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            while (LiveEnemies.Length > 0)
+            {
+                LiveEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+                yield return new WaitForSeconds(1f);
+            }
+            waveNumber++;
+            waveText.text = "Wave " + waveNumber.ToString();
+        }
     }
     void SpawnEnemy()
     {
+        //Enemy Spawn Position
         var LiveEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         Vector2 spawnPosition = new Vector2(0,0);
-        for (int i=0;i<5;i++)
+        for (int i=0;i<10;i++)
         {
             spawnPosition = new Vector2(Random.Range(-7.5f, 7.5f), Random.Range(-3.5f, 2.5f));
-            if (Vector2.Distance(player.transform.position, spawnPosition) < 3f)
+            if (Vector2.Distance(player.transform.position, spawnPosition) < 2.5f)
             {
                 print("too close");
                 continue;
@@ -77,12 +103,10 @@ public class EnemySpawner : MonoBehaviour
             }
         }
         GameObject newEnemy=Instantiate(randomEnemy, spawnPosition, transform.rotation);
-        /*
-        if (Vector2.Distance(newEnemy.transform.position,player.transform.position)<2.5f)
+        if(Vector2.Distance(player.transform.position, spawnPosition) < 2.5f)
         {
             newEnemy.transform.up = (new Vector3(0, 0, 0) - newEnemy.transform.position).normalized;
-            print(newEnemy.transform.up);
             newEnemy.transform.Translate(newEnemy.transform.up * 3f, Space.World);
-        }*/
+        }
     }
 }
