@@ -13,7 +13,7 @@ public class EnergyMeter : MonoBehaviour
     }
     void Update()
     {
-        Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Lerp(Rect.sizeDelta.x, player.energy * 5f, t));
+        Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Lerp(Rect.sizeDelta.x, (player.energy/player.maxEnergy) * 1200f, t));
         t += 3f * Time.deltaTime;
         if(player.exhausted)
         {

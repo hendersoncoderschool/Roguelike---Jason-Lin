@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     public int totalSpeedUpgrades;
     public int totalFirerateUpgrades;
     public int totalMaxHealthUpgrades;
+    public int totalHeals;
+    public int totalMaxEnergyUpgrades;
+    public int totalEnergyRechargeUpgrades;
 
     //Debug
     public int targetFPS;
@@ -38,6 +41,7 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector2 forceDirection = new Vector2(horizontal, vertical).normalized;
 
+        //Energy Calculations
         if (energy>0f)
         {
             energy -= rb.linearVelocity.magnitude * (movementEnergyCost/moveSpeed) * Time.deltaTime;
@@ -54,14 +58,19 @@ public class Player : MonoBehaviour
         }
         energy += rechargeEnergy*Time.deltaTime;
 
+        //Aiming
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(Time.timeScale==1)
         {
             Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
             transform.up = direction;
         }
+
+        //Health
+        health = Mathf.Min(health, maxHealth);
         healthDisplay.text = health.ToString()+"/"+maxHealth.ToString();
 
+        //Shop
         if(Input.GetKeyDown(KeyCode.Space))
         {
             shopPanel.SetActive(!shopPanel.activeInHierarchy);

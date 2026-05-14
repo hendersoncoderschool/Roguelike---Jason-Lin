@@ -496,12 +496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   moveSpeed: 800
-  energy: 20000
-  maxEnergy: 20000
+  energy: 200
+  maxEnergy: 200
   rechargeEnergy: 50
   movementEnergyCost: 24000
-  health: 10
-  maxHealth: 10
+  health: 15
+  maxHealth: 15
   firerate: 0.6
   exhausted: 0
   energyMeter: {fileID: 1895163664}
@@ -511,6 +511,9 @@ MonoBehaviour:
   totalSpeedUpgrades: 0
   totalFirerateUpgrades: 0
   totalMaxHealthUpgrades: 0
+  totalHeals: 0
+  totalMaxEnergyUpgrades: 0
+  totalEnergyRechargeUpgrades: 0
   targetFPS: 60
 --- !u!50 &483331586
 Rigidbody2D:
@@ -989,7 +992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10/10
+  m_text: 15/15
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1252,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveNumber: 1
-  timeToNextEnemy: 3
+  timeUntilNextEnemy: 0
   AllEnemies:
   - {fileID: 8544000850486491545, guid: 676a3a02c0d019a478b0fec4df66fbfb, type: 3}
   - {fileID: 3480783603015507226, guid: 3144a7c508d08534cb6d4b2a62d077cc, type: 3}
@@ -1994,6 +1997,9 @@ MonoBehaviour:
   - {fileID: 5357847197577486079, guid: 49b86b4d4e80ef14e8387e8b6b713742, type: 3}
   - {fileID: 2697285569926364884, guid: f440a665d8b68e141ac46201ad7aea5b, type: 3}
   - {fileID: 8634317309456376379, guid: a2c7098bdab74584ab69979a327b629e, type: 3}
+  - {fileID: 5357847197577486079, guid: 23b744388a9c8dd41a49d87e47799e55, type: 3}
+  - {fileID: 8634317309456376379, guid: ce24f937c5c4ae94c81bdc42c8bbfb87, type: 3}
+  - {fileID: 2697285569926364884, guid: 920ae2d1e3c592e4d94e9f25920f7601, type: 3}
 --- !u!1 &1549269330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,7 +2406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -900, y: 480}
+  m_AnchoredPosition: {x: -900, y: 400}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1895163662
@@ -2410,7 +2416,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895163660}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

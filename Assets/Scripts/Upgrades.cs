@@ -42,4 +42,22 @@ public class Upgrades : MonoBehaviour
         player.totalMaxHealthUpgrades += 1;
         CallReroll();
     }
+    public void Heal15Health()
+    {
+        player.health += 15;
+        player.totalHeals += 1;
+        CallReroll();
+    }
+    public void MaxEnergyUpgrade()
+    {
+        player.maxEnergy += 20;
+        player.totalMaxEnergyUpgrades += 1;
+        CallReroll();
+    }
+    public void EnergyRechargeUpgrade()
+    {
+        player.rechargeEnergy += 5;
+        player.totalEnergyRechargeUpgrades += 1;
+        CallReroll();
+    }
 }

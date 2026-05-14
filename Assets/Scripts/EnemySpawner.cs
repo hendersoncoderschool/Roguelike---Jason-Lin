@@ -8,7 +8,7 @@ using TMPro;
 public class EnemySpawner : MonoBehaviour
 {
     public int waveNumber;
-    public float timeToNextEnemy;
+    public float timeUntilNextEnemy;
     public List<GameObject> AllEnemies;
     public Dictionary<GameObject, int> EnemyChances;
     public GameObject player;
@@ -38,7 +38,9 @@ public class EnemySpawner : MonoBehaviour
     {
         while(true)
         {
-            //AddEnemies
+            //Set Enemy Wait Time
+            timeUntilNextEnemy = Mathf.Pow(1.1f, -(3 + waveNumber / 2) + 12) + 0.4f;
+            //Add Possible Enemies
             if(waveNumber >= 5)
             {
                 EnemyChances[AllEnemies[2]] = 50;
@@ -54,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
             //Spawn Enemies
             for (int i = 0; i < 3 + waveNumber / 2; i++)
             {
-                yield return new WaitForSeconds(timeToNextEnemy);
+                yield return new WaitForSeconds(timeUntilNextEnemy);
                 SpawnEnemy();
             }
             var LiveEnemies = GameObject.FindGameObjectsWithTag("Enemy");
