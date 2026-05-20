@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float health;
     public float maxHealth;
     public float firerate;
+    public float totalCoins;
     public bool exhausted;
     public EnergyMeter energyMeter;
     public GameObject playerBullet;
