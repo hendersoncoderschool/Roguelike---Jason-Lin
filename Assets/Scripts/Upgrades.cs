@@ -3,10 +3,12 @@ public class Upgrades : MonoBehaviour
 {
     public Player player;
     public RerollUpgrades rerollScript;
+    public float totalCoins;
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         rerollScript = GameObject.Find("Reroll").GetComponent<RerollUpgrades>();
+        totalCoins = 0;
     }
     public void CallReroll()
     {

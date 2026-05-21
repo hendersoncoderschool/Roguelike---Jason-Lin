@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public float health;
     public float maxHealth;
     public float firerate;
-    public float totalCoins;
     public bool exhausted;
     public EnergyMeter energyMeter;
     public GameObject playerBullet;
@@ -43,20 +42,28 @@ public class Player : MonoBehaviour
         Vector2 forceDirection = new Vector2(horizontal, vertical).normalized;
 
         //Energy Calculations
+
+        //Movement Energy Cost
         if (energy>0f)
         {
             energy -= rb.linearVelocity.magnitude * (movementEnergyCost/moveSpeed) * Time.deltaTime;
         }
-        if (energy < 1f) exhausted = true;
-        else if (energy > 50f) exhausted = false;
+        //Exhausted
+        if (energy < 1f && !exhausted)
+        {
+            exhausted = true;
+            StartCoroutine(ExhaustedTimer());
+        }
         if (energy>=0.1f&&!exhausted)
         {
             rb.AddForce(forceDirection * Time.deltaTime * moveSpeed, ForceMode2D.Force);
         }
+        //Energy Cap
         if(energy>maxEnergy)
         {
             energy = maxEnergy;
         }
+        //Energy Recharge
         energy += rechargeEnergy*Time.deltaTime;
 
         //Aiming
@@ -85,6 +92,12 @@ public class Player : MonoBehaviour
             }
         }    
     }
+    IEnumerator ExhaustedTimer()
+    {
+        //Waits x seconds if exhausted
+        yield return new WaitForSeconds(1.25f);
+        exhausted = false;
+    }
     IEnumerator Firerate()
     {
         while(true)
@@ -108,6 +121,10 @@ public class Player : MonoBehaviour
         if (col.gameObject.CompareTag("EnemyBullet"))
         {
             health -= 1; 
+        }
+        if (col.gameObject.CompareTag("Coin"))
+        {
+            
         }
     }
     void Awake()
