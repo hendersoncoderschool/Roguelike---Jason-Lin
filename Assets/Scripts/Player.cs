@@ -13,9 +13,11 @@ public class Player : MonoBehaviour
     public float maxHealth;
     public float firerate;
     public bool exhausted;
+    public float totalCoins;
     public EnergyMeter energyMeter;
     public GameObject playerBullet;
     public TextMeshProUGUI healthDisplay;
+    public TextMeshProUGUI coinDisplay;
     public GameObject shopPanel;
     //max energy and starting energy is 200
 
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         exhausted = false;
+        totalCoins = 0;
         StartCoroutine(Firerate());
     }
     void Update()
@@ -78,8 +81,11 @@ public class Player : MonoBehaviour
         health = Mathf.Min(health, maxHealth);
         healthDisplay.text = health.ToString()+"/"+maxHealth.ToString();
 
+        //Coins
+        coinDisplay.text = "Coins: " + totalCoins.ToString();
+
         //Shop
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             shopPanel.SetActive(!shopPanel.activeInHierarchy);
             if(Time.timeScale == 1)
@@ -122,11 +128,15 @@ public class Player : MonoBehaviour
         {
             health -= 1; 
         }
-        if (col.gameObject.CompareTag("Coin"))
-        {
-            
-        }
     }
+    /*void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Coin"))
+        {
+            totalCoins++;
+            Destroy(col.gameObject);
+        }
+    }*/
     void Awake()
     {
         QualitySettings.vSyncCount = 0;
