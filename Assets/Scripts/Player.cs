@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     public int totalMaxEnergyUpgrades;
     public int totalEnergyRechargeUpgrades;
 
+    //Rerolls
+    public int totalRerolls;
+    public float rerollBaseCost;
+    public float rerollFinalCost;
+
     //Debug
     public int targetFPS;
     void Start()
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour
         exhausted = false;
         totalCoins = 0;
         StartCoroutine(Firerate());
+        UpdateRerollCost();
     }
     void Update()
     {
@@ -91,6 +97,7 @@ public class Player : MonoBehaviour
             if(Time.timeScale == 1)
             {
                 Time.timeScale = 0;
+                //shopPanel.transform.Find("RerollButton").GetComponent<RerollUpgrades>().UpdateCost();
             }
             else
             {
@@ -129,14 +136,10 @@ public class Player : MonoBehaviour
             health -= 1; 
         }
     }
-    /*void OnTriggerEnter2D(Collider2D col)
+    public void UpdateRerollCost()
     {
-        if (col.CompareTag("Coin"))
-        {
-            totalCoins++;
-            Destroy(col.gameObject);
-        }
-    }*/
+        rerollFinalCost = rerollBaseCost + totalRerolls;
+    }
     void Awake()
     {
         QualitySettings.vSyncCount = 0;

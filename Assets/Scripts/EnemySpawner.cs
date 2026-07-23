@@ -65,7 +65,16 @@ public class EnemySpawner : MonoBehaviour
                 LiveEnemies = GameObject.FindGameObjectsWithTag("Enemy");
                 yield return new WaitForSeconds(1f);
             }
+            //Increase Wave Number
             waveNumber++;
+            //Reset Reroll Cost
+            if (waveNumber % 3 == 0)
+            {
+                player.GetComponent<Player>().rerollBaseCost += 1;
+                player.GetComponent<Player>().totalRerolls = 0;
+            }
+            player.GetComponent<Player>().UpdateRerollCost();
+            //Set Wave Text
             waveText.text = "Wave " + waveNumber.ToString();
         }
     }

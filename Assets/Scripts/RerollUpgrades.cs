@@ -4,6 +4,9 @@ using TMPro;
 using System.Collections.Generic;
 public class RerollUpgrades : MonoBehaviour
 {
+    public Player player;
+    public EnemySpawner enemySpawnerScript;
+    public TextMeshProUGUI costText;
     public GameObject upgradeSpawnpoint1;
     public GameObject upgradeSpawnpoint2;
     public GameObject upgradeSpawnpoint3;
@@ -11,15 +14,28 @@ public class RerollUpgrades : MonoBehaviour
     public List<GameObject> upgradeButtons;
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        enemySpawnerScript = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawner>();
         upgradeSpawnpoint1 = GameObject.Find("UpgradeSpawnpoint1");
         upgradeSpawnpoint2 = GameObject.Find("UpgradeSpawnpoint2");
         upgradeSpawnpoint3 = GameObject.Find("UpgradeSpawnpoint3");
     }
+    void Update()
+    {
+        costText.text = player.rerollFinalCost + "Coins";
+    }
     public void RerollAll()
     {
-        Reroll1();
-        Reroll2();
-        Reroll3();
+        if(player.totalCoins>=player.rerollFinalCost)
+        {
+            player.totalCoins -= player.rerollFinalCost;
+            Reroll1();
+            Reroll2();
+            Reroll3();
+            player.totalRerolls += 1;
+            player.rerollFinalCost = player.rerollBaseCost + player.totalRerolls;
+            player.UpdateRerollCost();
+        }
     }
     public void Reroll1()
     {
