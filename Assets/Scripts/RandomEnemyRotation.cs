@@ -1,5 +1,5 @@
 using UnityEngine;
-public class BlockerSpriteRotation : MonoBehaviour
+public class RandomEnemyRotation : MonoBehaviour
 {
     public float rotationSpeed;
     void Start()

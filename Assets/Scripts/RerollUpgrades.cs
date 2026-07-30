@@ -22,7 +22,7 @@ public class RerollUpgrades : MonoBehaviour
     }
     void Update()
     {
-        costText.text = player.rerollFinalCost + "Coins";
+        costText.text = player.rerollFinalCost + " Coins";
     }
     public void RerollAll()
     {

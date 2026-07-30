@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2426822232581073473}
   - component: {fileID: 4825909986208042856}
-  - component: {fileID: 179433002370190001}
+  - component: {fileID: 7178471493052693061}
   m_Layer: 8
   m_Name: BlockerEnemySprite
   m_TagString: Enemy
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &179433002370190001
+--- !u!114 &7178471493052693061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

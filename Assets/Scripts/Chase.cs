@@ -19,7 +19,6 @@ public class Chase : MonoBehaviour
         {
             finalSpeed = maxSpeed;
         }
-        //transform.Translate(Vector2.up * finalSpeed * Time.deltaTime);
         rb.AddForce(transform.up * finalSpeed * Time.deltaTime * 200f);
     }
 }
