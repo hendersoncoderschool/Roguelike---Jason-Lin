@@ -23,7 +23,8 @@ public class EnemySpawner : MonoBehaviour
             {AllEnemies[1], 70},
             {AllEnemies[2], 0},
             {AllEnemies[3], 0},
-            {AllEnemies[4], 0}
+            {AllEnemies[4], 0},
+            {AllEnemies[5], 0}
         };
         StartCoroutine(RandomWaves());
     }
@@ -41,17 +42,21 @@ public class EnemySpawner : MonoBehaviour
             //Set Enemy Wait Time
             timeUntilNextEnemy = Mathf.Pow(1.1f, -(3 + waveNumber / 2) + 12) + 0.4f;
             //Add Possible Enemies
-            if(waveNumber >= 5)
+            if(waveNumber >= 3)
             {
                 EnemyChances[AllEnemies[2]] = 50;
             }
-            if (waveNumber >= 10)
+            if (waveNumber >= 6)
             {
                 EnemyChances[AllEnemies[3]] = 50;
             }
-            if (waveNumber >= 15)
+            if (waveNumber >= 10)
             {
                 EnemyChances[AllEnemies[4]] = 35;
+            }
+            if (waveNumber >= 15)
+            {
+                EnemyChances[AllEnemies[5]] = 20;
             }
             //Spawn Enemies
             for (int i = 0; i < 3 + waveNumber / 2; i++)
