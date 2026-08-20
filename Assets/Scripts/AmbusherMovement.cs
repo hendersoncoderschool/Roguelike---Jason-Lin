@@ -5,6 +5,7 @@ public class AmbusherMovement : MonoBehaviour
     public float chaseSpeed;
     public float wanderDistance;
     public float playerDistance;
+    public float gradualTransparency;
     public GameObject player;
     public Rigidbody2D rb;
     public SpriteRenderer sprite;
@@ -27,7 +28,7 @@ public class AmbusherMovement : MonoBehaviour
         if (playerDistance>2f)
         {
             Wander();
-            /*if(playerDistance>4f)
+            if(playerDistance>3f)
             {
                 //Lowest transparency
                 SetTransparency(0.03f);
@@ -35,8 +36,10 @@ public class AmbusherMovement : MonoBehaviour
             else
             {
                 //Gradually increase transparency
-                SetTransparency(playerDistance/2-1)
-            }*/
+                gradualTransparency = -1*(playerDistance-3);
+                gradualTransparency = Mathf.Max(0.03f, gradualTransparency);
+                SetTransparency(gradualTransparency);
+            }
         }
         else
         {
