@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8011146054021169753}
   - component: {fileID: 1083529035760583526}
   - component: {fileID: 6164282090820389764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TunnelerShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 3038649069326186439}
   - component: {fileID: 4035946671235081617}
   - component: {fileID: 5089123537821354488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TunnelerEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 3020032611472969716}
   - component: {fileID: 4401862209887946900}
   - component: {fileID: 8746483477289893398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tunneler
   m_TagString: Untagged
   m_Icon: {fileID: 0}

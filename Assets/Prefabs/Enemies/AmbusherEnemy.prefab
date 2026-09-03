@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 6994264366288478201}
   - component: {fileID: 6853988008741152084}
   - component: {fileID: 5641846783090958374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AmbusherEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,8 +109,10 @@ MonoBehaviour:
   chaseSpeed: 600
   wanderDistance: 0
   playerDistance: 0
+  gradualTransparency: 0
   player: {fileID: 0}
   rb: {fileID: 0}
+  sprite: {fileID: 0}
   wanderPoint: {x: 0, y: 0}
 --- !u!114 &5790122426327001424
 MonoBehaviour:
