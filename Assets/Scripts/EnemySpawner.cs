@@ -24,7 +24,8 @@ public class EnemySpawner : MonoBehaviour
             {AllEnemies[2], 0},
             {AllEnemies[3], 0},
             {AllEnemies[4], 0},
-            {AllEnemies[5], 0}
+            {AllEnemies[5], 0},
+            {AllEnemies[6], 0}
         };
         StartCoroutine(RandomWaves());
     }
@@ -53,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
             if (waveNumber >= 10)
             {
                 EnemyChances[AllEnemies[4]] = 35;
+                EnemyChances[AllEnemies[6]] = 25;
             }
             if (waveNumber >= 15)
             {
