@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
@@ -14,6 +15,11 @@ public class Player : MonoBehaviour
     public float firerate;
     public bool exhausted;
     public float totalCoins;
+    public int tickCount;
+    public int maxTickCount;
+    public float tickRemovalProgress;
+    public float tickRemovalThreshold;
+    public List<TickChase> tickList = new List<TickChase>();
     public EnergyMeter energyMeter;
     public GameObject playerBullet;
     public TextMeshProUGUI healthDisplay;
@@ -75,6 +81,22 @@ public class Player : MonoBehaviour
         //Energy Recharge
         energy += rechargeEnergy*Time.deltaTime;
 
+        //Shake Ticks Off
+        if(tickCount!=0)
+        {
+            //Track Mouse Movement
+            float mouseVelocityX = Input.GetAxis("Mouse X");
+            float mouseVelocityY = Input.GetAxis("Mouse Y");
+            Vector2 mouseVelocity = new Vector2(mouseVelocityX, mouseVelocityY);
+            float mouseSpeed = mouseVelocity.magnitude;
+            mouseSpeed = Mathf.Min(mouseSpeed, 2.5f);
+            tickRemovalProgress += mouseSpeed*Time.deltaTime;
+            if(tickRemovalProgress>=tickRemovalThreshold)
+            {
+                //tickList[0].TickJumpOff();
+            }
+        }
+
         //Aiming
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(Time.timeScale==1)
@@ -97,13 +119,12 @@ public class Player : MonoBehaviour
             if(Time.timeScale == 1)
             {
                 Time.timeScale = 0;
-                //shopPanel.transform.Find("RerollButton").GetComponent<RerollUpgrades>().UpdateCost();
             }
             else
             {
                 Time.timeScale = 1;
             }
-        }    
+        }
     }
     IEnumerator ExhaustedTimer()
     {
