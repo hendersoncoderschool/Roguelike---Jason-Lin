@@ -28,11 +28,6 @@ public class TickChase : MonoBehaviour
                 transform.Translate(direction * speed * Time.deltaTime);
             }
         }
-        //Drain energy if tick is attached
-        else
-        {
-            playerScript.energy -= 25 * Time.deltaTime;
-        }
         //Attach to player if tick is close enough
         float playerDistance = Vector2.Distance((Vector2)gameObject.transform.position, player.transform.position);
         if (playerDistance <=1 && !isAttached && playerScript.tickCount<playerScript.maxTickCount)
@@ -53,7 +48,7 @@ public class TickChase : MonoBehaviour
         GameObject TickPoint = new GameObject("Tick Point");
         TickPoint.transform.SetParent(player.transform);
         TickPoint.transform.localPosition = new Vector3(randomX, randomY, 0f);
-        //Disable player collisions
+        //Disable tick collisions
         rb.simulated = false;
         //Move tick to the empty object
         speedMultiplier = 1.5f;
@@ -74,8 +69,24 @@ public class TickChase : MonoBehaviour
         transform.localPosition = TickPoint.transform.localPosition;
         Destroy(TickPoint);
     }
-    public void TickJumpOff()
+    public IEnumerator TickJumpOff()
     {
-        isAttached = false;
+        //Set parent to nothing
+        transform.SetParent(null);
+        //Set jumping off variables
+        float jumpOffSpeed = 3f;
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        //Jump off player while slowing down
+        while(true)
+        {
+            transform.Translate(randomDirection * jumpOffSpeed * Time.deltaTime);
+            jumpOffSpeed -= 5 * Time.deltaTime;
+            if(jumpOffSpeed<=0)
+            {
+                break;
+            }
+            yield return null;
+        }
+        //isAttached = false;
     }
 }

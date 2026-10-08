@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        print(col);
         Destroy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D col)

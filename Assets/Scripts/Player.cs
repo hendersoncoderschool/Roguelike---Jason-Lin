@@ -81,19 +81,25 @@ public class Player : MonoBehaviour
         //Energy Recharge
         energy += rechargeEnergy*Time.deltaTime;
 
+        //Tick Energy Decrease
+        energy-= tickList.Count * 25 * Time.deltaTime;
+
         //Shake Ticks Off
-        if(tickCount!=0)
+        if (tickCount!=0)
         {
             //Track Mouse Movement
             float mouseVelocityX = Input.GetAxis("Mouse X");
             float mouseVelocityY = Input.GetAxis("Mouse Y");
             Vector2 mouseVelocity = new Vector2(mouseVelocityX, mouseVelocityY);
             float mouseSpeed = mouseVelocity.magnitude;
-            mouseSpeed = Mathf.Min(mouseSpeed, 2.5f);
+            mouseSpeed = Mathf.Min(mouseSpeed, 2f);
             tickRemovalProgress += mouseSpeed*Time.deltaTime;
             if(tickRemovalProgress>=tickRemovalThreshold)
             {
-                //tickList[0].TickJumpOff();
+                StartCoroutine(tickList[0].TickJumpOff());
+                tickList.RemoveAt(0);
+                tickCount--;
+                tickRemovalProgress = 0;
             }
         }
 
