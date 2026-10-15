@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         energy-= tickList.Count * 25 * Time.deltaTime;
 
         //Shake Ticks Off
+        //make new stunnedTicks list and if it has anything in it, run the if-statement below (add ticks to the list in TickChase script)
         if (tickCount!=0)
         {
             //Track Mouse Movement
@@ -97,8 +98,6 @@ public class Player : MonoBehaviour
             if(tickRemovalProgress>=tickRemovalThreshold)
             {
                 StartCoroutine(tickList[0].TickJumpOff());
-                tickList.RemoveAt(0);
-                tickCount--;
                 tickRemovalProgress = 0;
             }
         }
