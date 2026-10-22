@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3160585444841706692}
   - component: {fileID: 6806243561513430168}
   m_Layer: 8
-  m_Name: Tower
+  m_Name: TowerEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

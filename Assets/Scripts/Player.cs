@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public float totalCoins;
     public int tickCount;
     public int maxTickCount;
+    public List<TickChase> stunnedTicks=new List<TickChase>();
     public float tickRemovalProgress;
     public float tickRemovalThreshold;
     public List<TickChase> tickList = new List<TickChase>();
@@ -85,7 +86,6 @@ public class Player : MonoBehaviour
         energy-= tickList.Count * 25 * Time.deltaTime;
 
         //Shake Ticks Off
-        //make new stunnedTicks list and if it has anything in it, run the if-statement below (add ticks to the list in TickChase script)
         if (tickCount!=0)
         {
             //Track Mouse Movement
@@ -97,8 +97,11 @@ public class Player : MonoBehaviour
             tickRemovalProgress += mouseSpeed*Time.deltaTime;
             if(tickRemovalProgress>=tickRemovalThreshold)
             {
-                StartCoroutine(tickList[0].TickJumpOff());
                 tickRemovalProgress = 0;
+                if (tickList.Count!=0)
+                {
+                    StartCoroutine(tickList[0].TickJumpOff());
+                }
             }
         }
 

@@ -700,8 +700,9 @@ MonoBehaviour:
   totalCoins: 0
   tickCount: 0
   maxTickCount: 3
+  stunnedTicks: []
   tickRemovalProgress: 0
-  tickRemovalThreshold: 1.5
+  tickRemovalThreshold: 1
   tickList: []
   energyMeter: {fileID: 1895163664}
   playerBullet: {fileID: 7505848869317441795, guid: fdacf1f25fabcc542976fb7edf40fe5f, type: 3}
@@ -1467,6 +1468,7 @@ MonoBehaviour:
   - {fileID: 5165639877882364956, guid: a5ef92af1f3bf34438c2f31fe7facb5e, type: 3}
   - {fileID: 3591624839401706977, guid: 7e00abd58a499bf48810d6fbf236361f, type: 3}
   - {fileID: 5304805041998525963, guid: e2e3f3572bc0dbc4aac698fdbb52d6a6, type: 3}
+  - {fileID: 7147621752759210109, guid: 2d430332b9c7bda42b861e65730ffa1f, type: 3}
   player: {fileID: 0}
   waveText: {fileID: 562919477}
 --- !u!1 &935341733

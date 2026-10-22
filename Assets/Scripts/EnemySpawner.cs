@@ -43,20 +43,21 @@ public class EnemySpawner : MonoBehaviour
             //Set Enemy Wait Time
             timeUntilNextEnemy = Mathf.Pow(1.1f, -(3 + waveNumber / 2) + 12) + 0.4f;
             //Add Possible Enemies
-            if(waveNumber >= 3)
+            if(waveNumber >= 2)
             {
                 EnemyChances[AllEnemies[2]] = 50;
             }
-            if (waveNumber >= 6)
+            if (waveNumber >= 5)
             {
                 EnemyChances[AllEnemies[3]] = 50;
+                EnemyChances[AllEnemies[7]] = 20;
             }
-            if (waveNumber >= 10)
+            if (waveNumber >= 8)
             {
                 EnemyChances[AllEnemies[4]] = 35;
                 EnemyChances[AllEnemies[6]] = 25;
             }
-            if (waveNumber >= 15)
+            if (waveNumber >= 10)
             {
                 EnemyChances[AllEnemies[5]] = 20;
             }
@@ -120,11 +121,31 @@ public class EnemySpawner : MonoBehaviour
                 break;
             }
         }
-        GameObject newEnemy=Instantiate(randomEnemy, spawnPosition, transform.rotation);
+        GameObject newEnemy=null;
+        GameObject newEnemy2=null;
+        GameObject newEnemy3=null;
+        //If selected enemy is a tick, spawn 3 of them
+        if (randomEnemy==AllEnemies[7])
+        {
+            newEnemy = Instantiate(randomEnemy, spawnPosition, transform.rotation);
+            newEnemy2 = Instantiate(randomEnemy, spawnPosition, transform.rotation);
+            newEnemy3 = Instantiate(randomEnemy, spawnPosition, transform.rotation);
+        }
+        else
+        {
+            newEnemy = Instantiate(randomEnemy, spawnPosition, transform.rotation);
+        }
         if(Vector2.Distance(player.transform.position, spawnPosition) < 2.5f)
         {
             newEnemy.transform.up = (new Vector3(0, 0, 0) - newEnemy.transform.position).normalized;
             newEnemy.transform.Translate(newEnemy.transform.up * 3f, Space.World);
+            if (randomEnemy == AllEnemies[7])
+            {
+                newEnemy2.transform.up = (new Vector3(0, 0, 0) - newEnemy2.transform.position).normalized;
+                newEnemy2.transform.Translate(newEnemy2.transform.up * 3f, Space.World);
+                newEnemy3.transform.up = (new Vector3(0, 0, 0) - newEnemy3.transform.position).normalized;
+                newEnemy3.transform.Translate(newEnemy3.transform.up * 3f, Space.World);
+            }
         }
     }
 }

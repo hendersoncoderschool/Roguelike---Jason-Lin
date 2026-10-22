@@ -21,20 +21,40 @@ public class TickChase : MonoBehaviour
     }
     void Update()
     {
-        //Move only if tick is not already attached and maxTickCount has not been reached
-        if (!isAttached)
+        //Move only if tick is not already attached, maxTickCount has not been reached, and there are no stunned ticks
+        if (!isAttached && 
+            playerScript.tickCount < playerScript.maxTickCount && 
+            playerScript.stunnedTicks.Count == 0)
         {
-            if(playerScript.tickCount < playerScript.maxTickCount)
-            {
-                Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
-                transform.Translate(direction * speed * Time.deltaTime);
-            }
+            Vector2 direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+            transform.Translate(direction * speed * Time.deltaTime);
         }
         //Attach to player if tick is close enough
         float playerDistance = Vector2.Distance((Vector2)gameObject.transform.position, player.transform.position);
-        if (playerDistance <=1 && !isAttached && playerScript.tickCount<playerScript.maxTickCount)
+        if (playerDistance <=1 && 
+            !isAttached && 
+            playerScript.tickCount<playerScript.maxTickCount && 
+            playerScript.stunnedTicks.Count == 0)
         {
             StartCoroutine(AttachToPlayer());
+        }
+        //If tick isn't moving and isn't attached, decrease alpha
+        if (!isAttached &&
+           (playerScript.tickCount >= playerScript.maxTickCount || playerScript.stunnedTicks.Count != 0))
+        {
+            spriteRenderer.color = new Color(
+                0.8490566f,
+                0,
+                0,
+                0.5f);
+        }
+        else
+        {
+            spriteRenderer.color = new Color(
+                0.8490566f,
+                0,
+                0,
+                1f);
         }
     }
     public IEnumerator AttachToPlayer()
@@ -73,15 +93,10 @@ public class TickChase : MonoBehaviour
     }
     public IEnumerator TickJumpOff()
     {
-        //Remove this tick from list
+        //Add this tick to stunnedTicks
+        playerScript.stunnedTicks.Add(gameObject.GetComponent<TickChase>());
+        //Remove this tick from tickList
         playerScript.tickList.RemoveAt(0);
-        //Set lower alpha
-        Color currentColor = spriteRenderer.color;
-        spriteRenderer.color = new Color(
-            currentColor.r,
-            currentColor.g,
-            currentColor.b,
-            0.5f);
         //Set parent to nothing
         transform.SetParent(null);
         //Set jumping off variables
@@ -126,15 +141,9 @@ public class TickChase : MonoBehaviour
         //Reset rotation and rb
         transform.localRotation = Quaternion.identity;
         rb.simulated = true;
-        //Stun
-        yield return new WaitForSeconds(1.5f);
-        //Set normal alpha
-        spriteRenderer.color = new Color(
-            currentColor.r,
-            currentColor.g,
-            currentColor.b,
-            1f);
         playerScript.tickCount--;
         isAttached = false;
+        //Remove this tick from stunnedTicks
+        playerScript.stunnedTicks.RemoveAt(0);
     }
 }
