@@ -19,7 +19,7 @@ public class AmbusherMovement : MonoBehaviour
         //Choose first wanderPoint
         wanderPoint = new Vector2(Random.Range(-7.5f, 7.5f), Random.Range(-3.5f, 2.5f));
         //Set original transparency
-        SetTransparency(0.03f);
+        SetTransparency(0.02f);
     }
     void Update()
     {
@@ -31,13 +31,13 @@ public class AmbusherMovement : MonoBehaviour
             if(playerDistance>3f)
             {
                 //Lowest transparency
-                SetTransparency(0.03f);
+                SetTransparency(0.02f);
             }
             else
             {
                 //Gradually increase transparency
                 gradualTransparency = -1*(playerDistance-3);
-                gradualTransparency = Mathf.Max(0.03f, gradualTransparency);
+                gradualTransparency = Mathf.Max(0.02f, gradualTransparency);
                 SetTransparency(gradualTransparency);
             }
         }

@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             if (waveNumber >= 5)
             {
                 EnemyChances[AllEnemies[3]] = 50;
-                EnemyChances[AllEnemies[7]] = 20;
+                EnemyChances[AllEnemies[7]] = 300;
             }
             if (waveNumber >= 8)
             {
@@ -123,28 +123,26 @@ public class EnemySpawner : MonoBehaviour
         }
         GameObject newEnemy=null;
         GameObject newEnemy2=null;
-        GameObject newEnemy3=null;
         //If selected enemy is a tick, spawn 3 of them
         if (randomEnemy==AllEnemies[7])
         {
-            newEnemy = Instantiate(randomEnemy, spawnPosition, transform.rotation);
-            newEnemy2 = Instantiate(randomEnemy, spawnPosition, transform.rotation);
-            newEnemy3 = Instantiate(randomEnemy, spawnPosition, transform.rotation);
+            newEnemy = Instantiate(randomEnemy, spawnPosition, Quaternion.identity);
+            newEnemy2 = Instantiate(randomEnemy, spawnPosition, Quaternion.identity);
         }
         else
         {
-            newEnemy = Instantiate(randomEnemy, spawnPosition, transform.rotation);
+            newEnemy = Instantiate(randomEnemy, spawnPosition, Quaternion.identity);
         }
         if(Vector2.Distance(player.transform.position, spawnPosition) < 2.5f)
         {
             newEnemy.transform.up = (new Vector3(0, 0, 0) - newEnemy.transform.position).normalized;
             newEnemy.transform.Translate(newEnemy.transform.up * 3f, Space.World);
+            newEnemy.transform.rotation = Quaternion.identity;
             if (randomEnemy == AllEnemies[7])
             {
                 newEnemy2.transform.up = (new Vector3(0, 0, 0) - newEnemy2.transform.position).normalized;
                 newEnemy2.transform.Translate(newEnemy2.transform.up * 3f, Space.World);
-                newEnemy3.transform.up = (new Vector3(0, 0, 0) - newEnemy3.transform.position).normalized;
-                newEnemy3.transform.Translate(newEnemy3.transform.up * 3f, Space.World);
+                newEnemy2.transform.rotation = Quaternion.identity;
             }
         }
     }

@@ -100,7 +100,7 @@ public class TickChase : MonoBehaviour
         //Set parent to nothing
         transform.SetParent(null);
         //Set jumping off variables
-        float jumpOffSpeed = 6f;
+        float jumpOffSpeed = 8f;
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         //Jump off player while slowing down
         while(true)

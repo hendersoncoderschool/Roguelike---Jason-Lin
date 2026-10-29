@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderSpeed: 150
-  chaseSpeed: 600
+  chaseSpeed: 750
   wanderDistance: 0
   playerDistance: 0
   gradualTransparency: 0

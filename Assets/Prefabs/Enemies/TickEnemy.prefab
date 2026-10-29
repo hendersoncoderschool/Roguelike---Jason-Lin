@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4578894434938922545}
   - component: {fileID: 60040768181458296}
   - component: {fileID: 5806997532559577328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TickEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 4
-  m_AngularDamping: 0
+  m_AngularDamping: 10000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -190,4 +190,5 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   rb: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   isAttached: 0
